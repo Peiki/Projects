@@ -13,14 +13,16 @@ public class Game1{
 	private boolean pause=false;
 	private long t;
 	private int e=0;
+	private int[] z=new int[2];
 	String n[]={"img/blue.png","img/red.png","img/green.png"};
+	private int con=0;
 	private JFrame f;
-	private JButton btnNewButton_1;
-	private JButton button;
+	private JButton button_0;
 	private JButton button_1;
 	private JButton button_2;
 	private JButton button_3;
 	private JButton button_4;
+	private JButton button_5;
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_3;
@@ -34,12 +36,12 @@ public class Game1{
 		lblNewLabel_1 = new JLabel("");
 		lblNewLabel_2 = new JLabel("");
 		lblNewLabel_3 = new JLabel("");
-		btnNewButton_1 = new JButton("");
-		button = new JButton("");
+		button_0 = new JButton("");
 		button_1 = new JButton("");
 		button_2 = new JButton("");
 		button_3 = new JButton("");
 		button_4 = new JButton("");
+		button_5 = new JButton("");
 		ImageIcon i=new ImageIcon("img/x2v.png");
 		ImageIcon i2=new ImageIcon("img/x3v.png");
 		ImageIcon i3=new ImageIcon("img/x4v.png");
@@ -72,92 +74,122 @@ public class Game1{
 		lblNewLabel_3.setIcon(i3);
 		
 		
-		btnNewButton_1.setBounds(20, 82, 182, 244);
-		btnNewButton_1.setIcon(cc);
-		btnNewButton_1.addActionListener(new ActionListener() {
+		button_0.setBounds(20, 82, 182, 244);
+		button_0.setIcon(cc);
+		button_0.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!c[0].getStatus()){
-					btnNewButton_1.setIcon(c[0].getIcon());
+					z[con]=0;
+					con++;
+					button_0.setIcon(c[0].getIcon());
 					c[0].turn();
 				}
-				else{
-					btnNewButton_1.setIcon(cc);
-					c[0].turn();
+				if(con==2){
+					con=0;
+					c[z[0]].turn();
+					c[z[1]].turn();
+					if(c[z[0]].isEqual(c[z[1]]))
+						System.out.println("GG");
 				}
 			}
 		});
 		
-		button.setBounds(275, 82, 182, 244);
-		button.setIcon(cc);
-		button.addActionListener(new ActionListener() {
+		button_1.setBounds(275, 82, 182, 244);
+		button_1.setIcon(cc);
+		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!c[1].getStatus()){
-					button.setIcon(c[1].getIcon());
+					z[con]=1;
+					con++;
+					button_1.setIcon(c[1].getIcon());
 					c[1].turn();
 				}
-				else{
-					button.setIcon(cc);
-					c[1].turn();
+				if(con==2){
+					con=0;
+					c[z[0]].turn();
+					c[z[1]].turn();
+					if(c[z[0]].isEqual(c[z[1]]))
+						System.out.println("GG");
 				}
 			}
 		});
 
-		button_1.setBounds(538, 82, 182, 244);
-		button_1.setIcon(cc);
-		button_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(!c[2].getStatus()){
-					button_1.setIcon(c[2].getIcon());
-					c[2].turn();
-				}
-				else{
-					button_1.setIcon(cc);
-					c[2].turn();
-				}
-			}
-		});
-		
-		button_2.setBounds(20, 367, 182, 244);
+		button_2.setBounds(538, 82, 182, 244);
 		button_2.setIcon(cc);
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(!c[3].getStatus()){
-					button_2.setIcon(c[3].getIcon());
-					c[3].turn();
+				if(!c[2].getStatus()){
+					z[con]=2;
+					con++;
+					button_2.setIcon(c[2].getIcon());
+					c[2].turn();
 				}
-				else{
-					button_2.setIcon(cc);
-					c[3].turn();
+				if(con==2){
+					con=0;
+					c[z[0]].turn();
+					c[z[1]].turn();
+					if(c[z[0]].isEqual(c[z[1]]))
+						System.out.println("GG");
 				}
 			}
 		});
 		
-		button_3.setBounds(275, 367, 182, 244);
+		button_3.setBounds(20, 367, 182, 244);
 		button_3.setIcon(cc);
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(!c[4].getStatus()){
-					button_3.setIcon(c[4].getIcon());
-					c[4].turn();
+				if(!c[3].getStatus()){
+					z[con]=3;
+					con++;
+					button_3.setIcon(c[3].getIcon());
+					c[3].turn();
 				}
-				else{
-					button_3.setIcon(cc);
-					c[4].turn();
+				if(con==2){
+					con=0;
+					c[z[0]].turn();
+					c[z[1]].turn();
+					if(c[z[0]].isEqual(c[z[1]]))
+						System.out.println("GG");
 				}
 			}
 		});
 		
-		button_4.setBounds(538, 367, 182, 244);
+		button_4.setBounds(275, 367, 182, 244);
 		button_4.setIcon(cc);
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(!c[4].getStatus()){
+					z[con]=4;
+					con++;
+					button_4.setIcon(c[4].getIcon());
+					c[4].turn();
+				}
+				if(con==2){
+					con=0;
+					c[z[0]].turn();
+					c[z[1]].turn();
+					if(c[z[0]].isEqual(c[z[1]]))
+						System.out.println("GG");
+				}
+			}
+		});
+		
+		button_5.setBounds(538, 367, 182, 244);
+		button_5.setIcon(cc);
+		button_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				if(!c[5].getStatus()){
-					button_4.setIcon(c[5].getIcon());
+					z[con]=5;
+					con++;
+					button_5.setIcon(c[5].getIcon());
 					c[5].turn();
 				}
-				else{
-					button_4.setIcon(cc);
-					c[5].turn();
+				if(con==2){
+					con=0;
+					c[z[0]].turn();
+					c[z[1]].turn();
+					if(c[z[0]].isEqual(c[z[1]]))
+						System.out.println("GG");
 				}
 			}
 		});
@@ -185,12 +217,12 @@ public class Game1{
 		f.getContentPane().add(lblNewLabel_1);
 		f.getContentPane().add(lblNewLabel_2);
 		f.getContentPane().add(lblNewLabel_3);
-		f.getContentPane().add(btnNewButton_1);
-		f.getContentPane().add(button);
+		f.getContentPane().add(button_0);
 		f.getContentPane().add(button_1);
 		f.getContentPane().add(button_2);
 		f.getContentPane().add(button_3);
 		f.getContentPane().add(button_4);
+		f.getContentPane().add(button_5);
 		SetCards(c);
 		t=System.currentTimeMillis();
 	}
@@ -228,12 +260,12 @@ public class Game1{
 		});
 	}
 	public void BlockGame(boolean t){
-			btnNewButton_1.setEnabled(!t);
-			button.setEnabled(!t);
+			button_0.setEnabled(!t);
 			button_1.setEnabled(!t);
 			button_2.setEnabled(!t);
 			button_3.setEnabled(!t);
 			button_4.setEnabled(!t);
+			button_5.setEnabled(!t);
 	}
 	public void AddError(){
 		if(e==0)

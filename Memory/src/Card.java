@@ -22,4 +22,9 @@ public class Card{
 	public void turn(){
 		status=!status;
 	}
+	public boolean isEqual(Card c){
+		if(this.id==c.id)
+			return true;
+		return false;
+	}
 }
