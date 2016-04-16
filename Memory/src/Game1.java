@@ -13,6 +13,7 @@ public class Game1{
 	private boolean pause=false;
 	private long t;
 	private int e=0;
+	String n[]={"img/blue.png","img/red.png","img/green.png"};
 	private JFrame f;
 	private JButton btnNewButton_1;
 	private JButton button;
@@ -26,6 +27,7 @@ public class Game1{
 	private ImageIcon ix;
 	private ImageIcon ix2;
 	private ImageIcon ix3;
+	private ImageIcon[] cx={ new ImageIcon( n[ 0 ] ),new ImageIcon( n[ 1 ] ), new ImageIcon( n[ 2 ] ) };
 	public Game1(){
 		f=new JFrame();
 		JButton btnNewButton = new JButton("Pause");
@@ -41,10 +43,13 @@ public class Game1{
 		ImageIcon i=new ImageIcon("img/x2v.png");
 		ImageIcon i2=new ImageIcon("img/x3v.png");
 		ImageIcon i3=new ImageIcon("img/x4v.png");
+		ImageIcon cc=new ImageIcon("img/cb.png");
+		
 		ix=new ImageIcon("img/x2.png");
 		ix2=new ImageIcon("img/x3.png");
 		ix3=new ImageIcon("img/x4.png");
-		ImageIcon cc=new ImageIcon("img/cb.png");
+		
+		Card[] c=new Card[6];
 
 		btnNewButton.setBounds(645, 11, 89, 23);
 		btnNewButton.addActionListener(new ActionListener(){
@@ -69,21 +74,93 @@ public class Game1{
 		
 		btnNewButton_1.setBounds(20, 82, 182, 244);
 		btnNewButton_1.setIcon(cc);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(!c[0].getStatus()){
+					btnNewButton_1.setIcon(c[0].getIcon());
+					c[0].turn();
+				}
+				else{
+					btnNewButton_1.setIcon(cc);
+					c[0].turn();
+				}
+			}
+		});
 		
 		button.setBounds(275, 82, 182, 244);
 		button.setIcon(cc);
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(!c[1].getStatus()){
+					button.setIcon(c[1].getIcon());
+					c[1].turn();
+				}
+				else{
+					button.setIcon(cc);
+					c[1].turn();
+				}
+			}
+		});
 
 		button_1.setBounds(538, 82, 182, 244);
 		button_1.setIcon(cc);
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(!c[2].getStatus()){
+					button_1.setIcon(c[2].getIcon());
+					c[2].turn();
+				}
+				else{
+					button_1.setIcon(cc);
+					c[2].turn();
+				}
+			}
+		});
 		
 		button_2.setBounds(20, 367, 182, 244);
 		button_2.setIcon(cc);
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(!c[3].getStatus()){
+					button_2.setIcon(c[3].getIcon());
+					c[3].turn();
+				}
+				else{
+					button_2.setIcon(cc);
+					c[3].turn();
+				}
+			}
+		});
 		
 		button_3.setBounds(275, 367, 182, 244);
 		button_3.setIcon(cc);
+		button_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(!c[4].getStatus()){
+					button_3.setIcon(c[4].getIcon());
+					c[4].turn();
+				}
+				else{
+					button_3.setIcon(cc);
+					c[4].turn();
+				}
+			}
+		});
 		
 		button_4.setBounds(538, 367, 182, 244);
 		button_4.setIcon(cc);
+		button_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(!c[5].getStatus()){
+					button_4.setIcon(c[5].getIcon());
+					c[5].turn();
+				}
+				else{
+					button_4.setIcon(cc);
+					c[5].turn();
+				}
+			}
+		});
 		
 		f.setTitle("Level 1");
 		f.setVisible(true);
@@ -114,6 +191,7 @@ public class Game1{
 		f.getContentPane().add(button_2);
 		f.getContentPane().add(button_3);
 		f.getContentPane().add(button_4);
+		SetCards(c);
 		t=System.currentTimeMillis();
 	}
 	public void PauseMenu(){
@@ -169,5 +247,26 @@ public class Game1{
 			new StartMenu();
 		}
 		e++;
+	}
+	public void SetCards(Card[] c){
+		int i=0,x;
+		while(i<c.length){
+			x=(int) (Math.random()*3+1);
+			if(!control(x,c,i)){
+				c[i]=new Card();
+				c[i].setId(x);
+				c[i].setIcon(cx[x-1]);
+				i++;
+			}
+		}
+	}
+	public boolean control(int x,Card[] c,int i){
+		int l=0;
+		for(int j=0;j<i;j++)
+			if(c[j].getId()==x)
+				l++;
+		if(l>=2)
+			return true;
+		return false;
 	}
 }
