@@ -14,7 +14,7 @@ public class StartMenu{
 		f.setTitle("Memory");
 		JButton b1 = new JButton("START GAME");
 		JButton btnNewButton = new JButton("EXIT GAME");
-		JLabel lblAlpha = new JLabel("Alpha 0.1");
+		JLabel lblAlpha = new JLabel("Alpha 1.0");
 		lblNewLabel = new JLabel("Player= ");
 		
 		b1.setBounds(110, 157, 225, 67);

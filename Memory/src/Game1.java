@@ -15,14 +15,9 @@ public class Game1{
 	private int e=0;
 	private int[] z=new int[2];
 	String n[]={"img/blue.png","img/red.png","img/green.png"};
-	private int con=0;
+	private int con=0,con2=0,win=0;
 	private JFrame f;
-	private JButton button_0;
-	private JButton button_1;
-	private JButton button_2;
-	private JButton button_3;
-	private JButton button_4;
-	private JButton button_5;
+	private JButton button[]=new JButton[6];
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_3;
@@ -36,12 +31,6 @@ public class Game1{
 		lblNewLabel_1 = new JLabel("");
 		lblNewLabel_2 = new JLabel("");
 		lblNewLabel_3 = new JLabel("");
-		button_0 = new JButton("");
-		button_1 = new JButton("");
-		button_2 = new JButton("");
-		button_3 = new JButton("");
-		button_4 = new JButton("");
-		button_5 = new JButton("");
 		ImageIcon i=new ImageIcon("img/x2v.png");
 		ImageIcon i2=new ImageIcon("img/x3v.png");
 		ImageIcon i3=new ImageIcon("img/x4v.png");
@@ -73,124 +62,228 @@ public class Game1{
 		lblNewLabel_3.setBounds(96, 11, 60, 60);
 		lblNewLabel_3.setIcon(i3);
 		
+		for(int h=0;h<button.length;h++){
+			button[h]=new JButton();
+			button[h].setIcon(cc);
+			//button[h].addActionListener(this);
+		}
 		
-		button_0.setBounds(20, 82, 182, 244);
-		button_0.setIcon(cc);
-		button_0.addActionListener(new ActionListener() {
+		button[0].setBounds(20, 82, 182, 244);
+		button[1].setBounds(275, 82, 182, 244);
+		button[2].setBounds(538, 82, 182, 244);
+		button[3].setBounds(20, 367, 182, 244);
+		button[4].setBounds(275, 367, 182, 244);
+		button[5].setBounds(544, 367, 182, 244);
+		
+		/*class Listener implements ActionListener{
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		}*/
+		
+		button[0].addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!c[0].getStatus()){
+					if(con2==1){
+						button[z[0]].setIcon(cc);
+						button[z[1]].setIcon(cc);
+						con2--;
+					}
+					button[0].setIcon(c[0].getIcon());
 					z[con]=0;
 					con++;
-					button_0.setIcon(c[0].getIcon());
 					c[0].turn();
 				}
 				if(con==2){
 					con=0;
 					c[z[0]].turn();
 					c[z[1]].turn();
-					if(c[z[0]].isEqual(c[z[1]]))
-						System.out.println("GG");
+					if(c[z[0]].isEqual(c[z[1]])){
+						button[z[0]].setEnabled(false);
+						button[z[1]].setEnabled(false);
+						win++;
+					}
+					else{
+						con2++;
+						AddError();
+					}
+				}
+				if(win==3){
+					JOptionPane.showMessageDialog(null, "HAI VINTO!");
+					f.dispose();
 				}
 			}
 		});
 		
-		button_1.setBounds(275, 82, 182, 244);
-		button_1.setIcon(cc);
-		button_1.addActionListener(new ActionListener() {
+		button[1].addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!c[1].getStatus()){
+					if(con2==1){
+						button[z[0]].setIcon(cc);
+						button[z[1]].setIcon(cc);
+						con2--;
+					}
+					button[1].setIcon(c[1].getIcon());
 					z[con]=1;
 					con++;
-					button_1.setIcon(c[1].getIcon());
 					c[1].turn();
 				}
 				if(con==2){
 					con=0;
 					c[z[0]].turn();
 					c[z[1]].turn();
-					if(c[z[0]].isEqual(c[z[1]]))
-						System.out.println("GG");
+					if(c[z[0]].isEqual(c[z[1]])){
+						button[z[0]].setEnabled(false);
+						button[z[1]].setEnabled(false);
+						win++;
+					}
+					else{
+						con2++;
+						AddError();
+					}
+				}
+				if(win==3){
+					JOptionPane.showMessageDialog(null, "HAI VINTO!");
+					f.dispose();
 				}
 			}
 		});
 
-		button_2.setBounds(538, 82, 182, 244);
-		button_2.setIcon(cc);
-		button_2.addActionListener(new ActionListener() {
+		button[2].addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!c[2].getStatus()){
+					if(con2==1){
+						button[z[0]].setIcon(cc);
+						button[z[1]].setIcon(cc);
+						con2--;
+					}
+					button[2].setIcon(c[2].getIcon());
 					z[con]=2;
 					con++;
-					button_2.setIcon(c[2].getIcon());
 					c[2].turn();
 				}
 				if(con==2){
 					con=0;
 					c[z[0]].turn();
 					c[z[1]].turn();
-					if(c[z[0]].isEqual(c[z[1]]))
-						System.out.println("GG");
+					if(c[z[0]].isEqual(c[z[1]])){
+						button[z[0]].setEnabled(false);
+						button[z[1]].setEnabled(false);
+						win++;
+					}
+					else{
+						con2++;
+						AddError();
+					}
+				}
+				if(win==3){
+					JOptionPane.showMessageDialog(null, "HAI VINTO!");
+					f.dispose();
 				}
 			}
 		});
 		
-		button_3.setBounds(20, 367, 182, 244);
-		button_3.setIcon(cc);
-		button_3.addActionListener(new ActionListener() {
+		button[3].addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!c[3].getStatus()){
+					if(con2==1){
+						button[z[0]].setIcon(cc);
+						button[z[1]].setIcon(cc);
+						con2--;
+					}
+					button[3].setIcon(c[3].getIcon());
 					z[con]=3;
 					con++;
-					button_3.setIcon(c[3].getIcon());
 					c[3].turn();
 				}
 				if(con==2){
 					con=0;
 					c[z[0]].turn();
 					c[z[1]].turn();
-					if(c[z[0]].isEqual(c[z[1]]))
-						System.out.println("GG");
+					if(c[z[0]].isEqual(c[z[1]])){
+						button[z[0]].setEnabled(false);
+						button[z[1]].setEnabled(false);
+						win++;
+					}
+					else{
+						con2++;
+						AddError();
+					}
+				}
+				if(win==3){
+					JOptionPane.showMessageDialog(null, "HAI VINTO!");
+					f.dispose();
 				}
 			}
 		});
 		
-		button_4.setBounds(275, 367, 182, 244);
-		button_4.setIcon(cc);
-		button_4.addActionListener(new ActionListener() {
+		button[4].addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!c[4].getStatus()){
+					if(con2==1){
+						button[z[0]].setIcon(cc);
+						button[z[1]].setIcon(cc);
+						con2--;
+					}
+					button[4].setIcon(c[4].getIcon());
 					z[con]=4;
 					con++;
-					button_4.setIcon(c[4].getIcon());
 					c[4].turn();
 				}
 				if(con==2){
 					con=0;
 					c[z[0]].turn();
 					c[z[1]].turn();
-					if(c[z[0]].isEqual(c[z[1]]))
-						System.out.println("GG");
+					if(c[z[0]].isEqual(c[z[1]])){
+						button[z[0]].setEnabled(false);
+						button[z[1]].setEnabled(false);
+						win++;
+					}
+					else{
+						con2++;
+						AddError();
+					}
+				}
+				if(win==3){
+					JOptionPane.showMessageDialog(null, "HAI VINTO!");
+					f.dispose();
 				}
 			}
 		});
 		
-		button_5.setBounds(538, 367, 182, 244);
-		button_5.setIcon(cc);
-		button_5.addActionListener(new ActionListener() {
+		button[5].addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!c[5].getStatus()){
+					if(con2==1){
+						button[z[0]].setIcon(cc);
+						button[z[1]].setIcon(cc);
+						con2--;
+					}
+					button[5].setIcon(c[5].getIcon());
 					z[con]=5;
 					con++;
-					button_5.setIcon(c[5].getIcon());
 					c[5].turn();
 				}
 				if(con==2){
 					con=0;
 					c[z[0]].turn();
 					c[z[1]].turn();
-					if(c[z[0]].isEqual(c[z[1]]))
-						System.out.println("GG");
+					if(c[z[0]].isEqual(c[z[1]])){
+						button[z[0]].setEnabled(false);
+						button[z[1]].setEnabled(false);
+						win++;
+					}
+					else{
+						con2++;
+						AddError();
+					}
 				}
+				if(win==3){
+					JOptionPane.showMessageDialog(null, "HAI VINTO!");
+					f.dispose();
+				}
+					
 			}
 		});
 		
@@ -217,12 +310,8 @@ public class Game1{
 		f.getContentPane().add(lblNewLabel_1);
 		f.getContentPane().add(lblNewLabel_2);
 		f.getContentPane().add(lblNewLabel_3);
-		f.getContentPane().add(button_0);
-		f.getContentPane().add(button_1);
-		f.getContentPane().add(button_2);
-		f.getContentPane().add(button_3);
-		f.getContentPane().add(button_4);
-		f.getContentPane().add(button_5);
+		for(int h=0;h<button.length;h++)
+			f.getContentPane().add(button[h]);
 		SetCards(c);
 		t=System.currentTimeMillis();
 	}
@@ -230,7 +319,6 @@ public class Game1{
 		t=t-System.currentTimeMillis();
 		BlockGame(true);
 		JFrame f2=new JFrame();
-		AddError();
 		f2.setSize(225,120);
 		f2.setVisible(true);
 		f2.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -260,12 +348,8 @@ public class Game1{
 		});
 	}
 	public void BlockGame(boolean t){
-			button_0.setEnabled(!t);
-			button_1.setEnabled(!t);
-			button_2.setEnabled(!t);
-			button_3.setEnabled(!t);
-			button_4.setEnabled(!t);
-			button_5.setEnabled(!t);
+		for(int h=0;h<button.length;h++)
+			button[h].setEnabled(!t);
 	}
 	public void AddError(){
 		if(e==0)
