@@ -12,6 +12,7 @@ public class NameMenu{
 	private JButton btnNewButton;
 	private JButton button_5;
 	private JButton button_6;
+	private JFrame f;
 	public boolean getState(){
 		return state;
 	}
@@ -23,7 +24,7 @@ public class NameMenu{
 		return btnNewButton.getText()+button_5.getText()+button_6.getText();
 	}
 	public NameMenu(){
-		JFrame f=new JFrame();
+		f=new JFrame();
 		f.setType(Type.UTILITY);
 		f.setTitle("Memory");
 		JButton button = new JButton("^");

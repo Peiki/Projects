@@ -6,11 +6,12 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 public class StartMenu{
 	private JLabel lblNewLabel;
+	private JFrame f;
 	public void setPlayer(String s){
 		lblNewLabel.setText(lblNewLabel.getText()+s);
 	}
 	public StartMenu(){
-		JFrame f=new JFrame();
+		f=new JFrame();
 		f.setTitle("Memory");
 		JButton b1 = new JButton("START GAME");
 		JButton btnNewButton = new JButton("EXIT GAME");

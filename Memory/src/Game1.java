@@ -17,6 +17,7 @@ public class Game1{
 	String n[]={"img/blue.png","img/red.png","img/green.png"};
 	private int con=0,con2=0,win=0;
 	private JFrame f;
+	private JFrame f2;
 	private JButton button[]=new JButton[6];
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
@@ -24,6 +25,7 @@ public class Game1{
 	private ImageIcon ix;
 	private ImageIcon ix2;
 	private ImageIcon ix3;
+	private ImageIcon cc;
 	private ImageIcon[] cx={ new ImageIcon( n[ 0 ] ),new ImageIcon( n[ 1 ] ), new ImageIcon( n[ 2 ] ) };
 	private Card[] c;
 	public Game1(){
@@ -35,7 +37,7 @@ public class Game1{
 		ImageIcon i=new ImageIcon("img/x2v.png");
 		ImageIcon i2=new ImageIcon("img/x3v.png");
 		ImageIcon i3=new ImageIcon("img/x4v.png");
-		ImageIcon cc=new ImageIcon("img/cb.png");
+		cc=new ImageIcon("img/cb.png");
 		
 		ix=new ImageIcon("img/x2.png");
 		ix2=new ImageIcon("img/x3.png");
@@ -331,7 +333,7 @@ public class Game1{
 	public void PauseMenu(){
 		t=t-System.currentTimeMillis();
 		BlockGame(true);
-		JFrame f2=new JFrame();
+		f2=new JFrame();
 		f2.setSize(225,120);
 		f2.setVisible(true);
 		f2.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
