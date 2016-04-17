@@ -25,6 +25,7 @@ public class Game1{
 	private ImageIcon ix2;
 	private ImageIcon ix3;
 	private ImageIcon[] cx={ new ImageIcon( n[ 0 ] ),new ImageIcon( n[ 1 ] ), new ImageIcon( n[ 2 ] ) };
+	private Card[] c;
 	public Game1(){
 		f=new JFrame();
 		JButton btnNewButton = new JButton("Pause");
@@ -40,7 +41,7 @@ public class Game1{
 		ix2=new ImageIcon("img/x3.png");
 		ix3=new ImageIcon("img/x4.png");
 		
-		Card[] c=new Card[6];
+		c=new Card[6];
 
 		btnNewButton.setBounds(645, 11, 89, 23);
 		btnNewButton.addActionListener(new ActionListener(){
@@ -102,6 +103,8 @@ public class Game1{
 					if(c[z[0]].isEqual(c[z[1]])){
 						button[z[0]].setEnabled(false);
 						button[z[1]].setEnabled(false);
+						c[z[0]].setStatus();
+						c[z[1]].setStatus();
 						win++;
 					}
 					else{
@@ -136,6 +139,8 @@ public class Game1{
 					if(c[z[0]].isEqual(c[z[1]])){
 						button[z[0]].setEnabled(false);
 						button[z[1]].setEnabled(false);
+						c[z[0]].setStatus();
+						c[z[1]].setStatus();
 						win++;
 					}
 					else{
@@ -170,6 +175,8 @@ public class Game1{
 					if(c[z[0]].isEqual(c[z[1]])){
 						button[z[0]].setEnabled(false);
 						button[z[1]].setEnabled(false);
+						c[z[0]].setStatus();
+						c[z[1]].setStatus();
 						win++;
 					}
 					else{
@@ -204,6 +211,8 @@ public class Game1{
 					if(c[z[0]].isEqual(c[z[1]])){
 						button[z[0]].setEnabled(false);
 						button[z[1]].setEnabled(false);
+						c[z[0]].setStatus();
+						c[z[1]].setStatus();
 						win++;
 					}
 					else{
@@ -238,6 +247,8 @@ public class Game1{
 					if(c[z[0]].isEqual(c[z[1]])){
 						button[z[0]].setEnabled(false);
 						button[z[1]].setEnabled(false);
+						c[z[0]].setStatus();
+						c[z[1]].setStatus();
 						win++;
 					}
 					else{
@@ -272,6 +283,8 @@ public class Game1{
 					if(c[z[0]].isEqual(c[z[1]])){
 						button[z[0]].setEnabled(false);
 						button[z[1]].setEnabled(false);
+						c[z[0]].setStatus();
+						c[z[1]].setStatus();
 						win++;
 					}
 					else{
@@ -349,7 +362,8 @@ public class Game1{
 	}
 	public void BlockGame(boolean t){
 		for(int h=0;h<button.length;h++)
-			button[h].setEnabled(!t);
+			if(!c[h].getStatus2())
+				button[h].setEnabled(!t);
 	}
 	public void AddError(){
 		if(e==0)

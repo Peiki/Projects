@@ -1,7 +1,7 @@
 import javax.swing.ImageIcon;
 public class Card{
 	int id=0;
-	boolean status=false;
+	boolean status=false,status2=false;
 	ImageIcon i;
 	public void setIcon(ImageIcon i){
 		this.i=i;
@@ -18,6 +18,12 @@ public class Card{
 	}
 	public boolean getStatus(){
 		return status;
+	}
+	public boolean getStatus2(){
+		return status2;
+	}
+	public void setStatus(){
+		status2=true;
 	}
 	public void turn(){
 		status=!status;
