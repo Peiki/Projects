@@ -15,7 +15,7 @@ public class StartMenu{
 		f.setTitle("Memory");
 		JButton b1 = new JButton("START GAME");
 		JButton btnNewButton = new JButton("EXIT GAME");
-		JLabel lblAlpha = new JLabel("Alpha 1.0");
+		JLabel lblAlpha = new JLabel("Alpha 1.0.1");
 		lblNewLabel = new JLabel("Player= ");
 		
 		b1.setBounds(110, 157, 225, 67);
@@ -39,7 +39,7 @@ public class StartMenu{
 			}
 		});
 		
-		lblAlpha.setBounds(381, 11, 53, 14);
+		lblAlpha.setBounds(360, 11, 74, 14);
 		
 		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel.setBounds(360, 397, 74, 14);
