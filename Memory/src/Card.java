@@ -11,7 +11,6 @@ public class Card{
 	}
 	public void setId(int i){
 		this.id=i;
-		System.out.println(id);
 	}
 	public int getId(){
 		return id;

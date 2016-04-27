@@ -34,37 +34,10 @@ public class NameMenu{
 		JButton button_3 = new JButton("v");
 		JButton button_4 = new JButton("v");
 		JButton btnFatto = new JButton("FATTO");
+		JLabel lblInserisciLeTue = new JLabel("Inserisci le tue iniziali");
 		btnNewButton = new JButton("A");
 		button_5 = new JButton("A");
 		button_6 = new JButton("A");
-		f.setVisible(true);
-		f.setSize(318,193);
-		f.setLocationRelativeTo(null);
-		f.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		f.setResizable(false);
-		
-		f.getContentPane().setLayout(null);
-		f.getContentPane().add(button);
-		f.getContentPane().add(button_1);
-		f.getContentPane().add(button_2);
-		f.getContentPane().add(btnV);
-		f.getContentPane().add(button_3);
-		f.getContentPane().add(button_4);
-		f.getContentPane().add(btnFatto);
-		f.getContentPane().add(btnNewButton);
-		f.getContentPane().add(button_5);
-		f.getContentPane().add(button_6);
-		
-		f.addWindowListener(new WindowAdapter(){
-			public void windowClosing(WindowEvent e){
-				int c=JOptionPane.showConfirmDialog(null,"Sei sicuro di voler uscire?","Memory",JOptionPane.YES_NO_OPTION);
-				if(c==JOptionPane.YES_OPTION){
-					exit=true;
-					state=false;
-					f.dispose();
-				}
-			}
-		});
 		
 		button.setBounds(44, 39, 50, 23);
 		button.addActionListener(new ActionListener() {
@@ -167,8 +140,36 @@ public class NameMenu{
 		button_6.setEnabled(false);
 		button_6.setBounds(226, 62, 50, 23);
 		
-		JLabel lblInserisciLeTue = new JLabel("Inserisci le tue iniziali");
 		lblInserisciLeTue.setBounds(95, 11, 127, 14);
+		
+		f.setVisible(true);
+		f.setSize(318,193);
+		f.setLocationRelativeTo(null);
+		f.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		f.setResizable(false);
+		
+		f.addWindowListener(new WindowAdapter(){
+			public void windowClosing(WindowEvent e){
+				int c=JOptionPane.showConfirmDialog(null,"Sei sicuro di voler uscire?","Memory",JOptionPane.YES_NO_OPTION);
+				if(c==JOptionPane.YES_OPTION){
+					exit=true;
+					state=false;
+					f.dispose();
+				}
+			}
+		});
+		
+		f.getContentPane().setLayout(null);
+		f.getContentPane().add(button);
+		f.getContentPane().add(button_1);
+		f.getContentPane().add(button_2);
+		f.getContentPane().add(btnV);
+		f.getContentPane().add(button_3);
+		f.getContentPane().add(button_4);
+		f.getContentPane().add(btnFatto);
+		f.getContentPane().add(btnNewButton);
+		f.getContentPane().add(button_5);
+		f.getContentPane().add(button_6);
 		f.getContentPane().add(lblInserisciLeTue);
 	}
 }

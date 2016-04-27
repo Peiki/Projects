@@ -116,7 +116,10 @@ public class Game1{
 				}
 				if(win==3){
 					JOptionPane.showMessageDialog(null, "HAI VINTO!");
+					t=System.currentTimeMillis()-t;
+					System.out.println(t);
 					f.dispose();
+					new HighlightsMenu(t);
 				}
 			}
 		});
@@ -152,7 +155,10 @@ public class Game1{
 				}
 				if(win==3){
 					JOptionPane.showMessageDialog(null, "HAI VINTO!");
+					t=System.currentTimeMillis()-t;
+					System.out.println(t);
 					f.dispose();
+					new HighlightsMenu(t);
 				}
 			}
 		});
@@ -188,7 +194,10 @@ public class Game1{
 				}
 				if(win==3){
 					JOptionPane.showMessageDialog(null, "HAI VINTO!");
+					t=System.currentTimeMillis()-t;
+					System.out.println(t);
 					f.dispose();
+					new HighlightsMenu(t);
 				}
 			}
 		});
@@ -224,7 +233,10 @@ public class Game1{
 				}
 				if(win==3){
 					JOptionPane.showMessageDialog(null, "HAI VINTO!");
+					t=System.currentTimeMillis()-t;
+					System.out.println(t);
 					f.dispose();
+					new HighlightsMenu(t);
 				}
 			}
 		});
@@ -260,7 +272,10 @@ public class Game1{
 				}
 				if(win==3){
 					JOptionPane.showMessageDialog(null, "HAI VINTO!");
+					t=System.currentTimeMillis()-t;
+					System.out.println(t);
 					f.dispose();
+					new HighlightsMenu(t);
 				}
 			}
 		});
@@ -296,7 +311,10 @@ public class Game1{
 				}
 				if(win==3){
 					JOptionPane.showMessageDialog(null, "HAI VINTO!");
+					t=System.currentTimeMillis()-t;
+					System.out.println(t);
 					f.dispose();
+					new HighlightsMenu(t);
 				}
 					
 			}
@@ -314,8 +332,6 @@ public class Game1{
 				int c=JOptionPane.showConfirmDialog(null,"Sei sicuro di voler uscire?","Memory",JOptionPane.YES_NO_OPTION);
 				if(c==JOptionPane.YES_OPTION){
 					f.dispose();
-					t=System.currentTimeMillis()-t;
-					System.out.println(t);
 				}
 			}
 		});
