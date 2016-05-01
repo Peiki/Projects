@@ -1,9 +1,18 @@
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.IOException;
 public class StartMenu{
 	private JLabel lblNewLabel;
 	private JFrame f;
@@ -43,6 +52,26 @@ public class StartMenu{
 		
 		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel.setBounds(360, 397, 74, 14);
+		
+		try{
+			File audio=new File("sound/menu.wav");
+			AudioInputStream ais=AudioSystem.getAudioInputStream(audio);
+			AudioFormat f = ais.getFormat();
+			DataLine.Info info = new DataLine.Info(Clip.class, f);
+			Clip c;
+			try{
+				c = (Clip) AudioSystem.getLine(info);
+				c.open(ais);
+				c.start();
+				c.loop(20);
+			} catch (LineUnavailableException e){
+				e.printStackTrace();
+			}
+		} catch (UnsupportedAudioFileException e1){
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 		
 		f.getContentPane().setLayout(null);
 		f.getContentPane().add(b1, BorderLayout.CENTER);
