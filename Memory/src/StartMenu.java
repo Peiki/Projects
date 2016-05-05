@@ -14,6 +14,7 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 public class StartMenu{
+	private Clip c;
 	private JLabel lblNewLabel;
 	private JFrame f;
 	public void setPlayer(String s){
@@ -34,6 +35,7 @@ public class StartMenu{
 			public void actionPerformed(ActionEvent e){
 				new Game1();
 				f.dispose();
+				c.stop();
 			}
 		});
 		
@@ -42,9 +44,12 @@ public class StartMenu{
 		btnNewButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				int c=JOptionPane.showConfirmDialog(null,"Sei sicuro di voler uscire?","Memory",JOptionPane.YES_NO_OPTION);
-				if(c==JOptionPane.YES_OPTION)
+				int c1=JOptionPane.showConfirmDialog(null,"Sei sicuro di voler uscire?","Memory",JOptionPane.YES_NO_OPTION);
+				if(c1==JOptionPane.YES_OPTION){
+					c.stop();
 					f.dispose();
+				}
+					
 			}
 		});
 		
@@ -58,7 +63,6 @@ public class StartMenu{
 			AudioInputStream ais=AudioSystem.getAudioInputStream(audio);
 			AudioFormat f = ais.getFormat();
 			DataLine.Info info = new DataLine.Info(Clip.class, f);
-			Clip c;
 			try{
 				c = (Clip) AudioSystem.getLine(info);
 				c.open(ais);
@@ -78,6 +82,7 @@ public class StartMenu{
 		f.getContentPane().add(lblAlpha);
 		f.getContentPane().add(btnNewButton);
 		f.getContentPane().add(lblNewLabel);
+		f.getContentPane().setBackground(Color.GREEN);
 		
 		f.setResizable(false);
 		f.setVisible(true);
@@ -86,9 +91,12 @@ public class StartMenu{
 		f.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		f.addWindowListener(new WindowAdapter(){
 			public void windowClosing(WindowEvent e){
-				int c=JOptionPane.showConfirmDialog(null,"Sei sicuro di voler uscire?","Memory",JOptionPane.YES_NO_OPTION);
-				if(c==JOptionPane.YES_OPTION)
+				int c1=JOptionPane.showConfirmDialog(null,"Sei sicuro di voler uscire?","Memory",JOptionPane.YES_NO_OPTION);
+				if(c1==JOptionPane.YES_OPTION){
+					c.stop();
 					f.dispose();
+				}
+					
 			}
 		});
 	}

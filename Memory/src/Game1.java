@@ -3,8 +3,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -28,6 +37,7 @@ public class Game1{
 	private ImageIcon cc;
 	private ImageIcon[] cx={ new ImageIcon( n[ 0 ] ),new ImageIcon( n[ 1 ] ), new ImageIcon( n[ 2 ] ) };
 	private Card[] c;
+	private Clip c2,c3;
 	public Game1(){
 		f=new JFrame();
 		JButton btnNewButton = new JButton("Pause");
@@ -52,6 +62,7 @@ public class Game1{
 				if(!pause){
 					PauseMenu();
 					pause=true;
+					c2.stop();
 				}
 			}
 		});
@@ -120,6 +131,7 @@ public class Game1{
 					System.out.println(t);
 					f.dispose();
 					new HighlightsMenu(t);
+					c2.stop();
 				}
 			}
 		});
@@ -159,6 +171,7 @@ public class Game1{
 					System.out.println(t);
 					f.dispose();
 					new HighlightsMenu(t);
+					c2.stop();
 				}
 			}
 		});
@@ -198,6 +211,7 @@ public class Game1{
 					System.out.println(t);
 					f.dispose();
 					new HighlightsMenu(t);
+					c2.stop();
 				}
 			}
 		});
@@ -237,6 +251,7 @@ public class Game1{
 					System.out.println(t);
 					f.dispose();
 					new HighlightsMenu(t);
+					c2.stop();
 				}
 			}
 		});
@@ -276,6 +291,7 @@ public class Game1{
 					System.out.println(t);
 					f.dispose();
 					new HighlightsMenu(t);
+					c2.stop();
 				}
 			}
 		});
@@ -315,10 +331,37 @@ public class Game1{
 					System.out.println(t);
 					f.dispose();
 					new HighlightsMenu(t);
+					c2.stop();
 				}
 					
 			}
 		});
+		
+		try{
+			File audio=new File("sound/game.wav");
+			File audio2=new File("sound/lose.wav");
+			AudioInputStream ais=AudioSystem.getAudioInputStream(audio);
+			AudioInputStream ais2=AudioSystem.getAudioInputStream(audio2);
+			AudioFormat f = ais.getFormat();
+			AudioFormat f2= ais2.getFormat();
+			DataLine.Info info = new DataLine.Info(Clip.class, f);
+			DataLine.Info info2 = new DataLine.Info(Clip.class, f2);
+			try{
+				c2 = (Clip) AudioSystem.getLine(info);
+				c2.open(ais);
+				c2.start();
+				c2.loop(20);
+				c3 = (Clip) AudioSystem.getLine(info2);
+				c3.open(ais2);
+				
+			} catch (LineUnavailableException e){
+				e.printStackTrace();
+			}
+		} catch (UnsupportedAudioFileException e1){
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 		
 		f.setTitle("Level 1");
 		f.setVisible(true);
@@ -332,6 +375,7 @@ public class Game1{
 				int c=JOptionPane.showConfirmDialog(null,"Sei sicuro di voler uscire?","Memory",JOptionPane.YES_NO_OPTION);
 				if(c==JOptionPane.YES_OPTION){
 					f.dispose();
+					c2.stop();
 				}
 			}
 		});
@@ -375,6 +419,7 @@ public class Game1{
 				pause=false;
 				BlockGame(false);
 				t=t+System.currentTimeMillis();
+				c2.start();
 			}
 		});
 	}
@@ -390,9 +435,12 @@ public class Game1{
 			lblNewLabel_2.setIcon(ix2);
 		else{
 			lblNewLabel_3.setIcon(ix3);
+			c2.stop();
+			c3.start();
 			JOptionPane.showMessageDialog(null, "HAI PERSO");
 			f.dispose();
 			new StartMenu();
+			
 		}
 		e++;
 	}
