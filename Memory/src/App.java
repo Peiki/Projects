@@ -9,7 +9,7 @@ public class App{
 				t=false;
 			}
 		}
-		if(!nm.getExit()){
+		if(!nm.getExit()){	
 			System.out.println("Playing...");
 			sm=new StartMenu();
 			String s=nm.getName();

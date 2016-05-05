@@ -25,8 +25,10 @@ public class StartMenu{
 		f.setTitle("Memory");
 		JButton b1 = new JButton("START GAME");
 		JButton btnNewButton = new JButton("EXIT GAME");
-		JLabel lblAlpha = new JLabel("Alpha 1.0.1");
+		JLabel lblAlpha = new JLabel("Alpha 1.0.3");
 		lblNewLabel = new JLabel("Player= ");
+		JLabel lblNewLabel_1 = new JLabel("");
+		ImageIcon i=new ImageIcon("img/logo.png");
 		
 		b1.setBounds(110, 157, 225, 67);
 		b1.setFont(new Font("Helvetica",Font.BOLD,20));
@@ -58,6 +60,9 @@ public class StartMenu{
 		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel.setBounds(360, 397, 74, 14);
 		
+		lblNewLabel_1.setBounds(54, 43, 335, 82);
+		lblNewLabel_1.setIcon(i);
+		
 		try{
 			File audio=new File("sound/menu.wav");
 			AudioInputStream ais=AudioSystem.getAudioInputStream(audio);
@@ -82,6 +87,7 @@ public class StartMenu{
 		f.getContentPane().add(lblAlpha);
 		f.getContentPane().add(btnNewButton);
 		f.getContentPane().add(lblNewLabel);
+		f.getContentPane().add(lblNewLabel_1);
 		f.getContentPane().setBackground(Color.GREEN);
 		
 		f.setResizable(false);
