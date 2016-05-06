@@ -19,7 +19,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 public class Game1{
-	private boolean pause=false;
+	private boolean pause=false,m=true;
 	private long t;
 	private int e=0;
 	private int[] z=new int[2];
@@ -38,9 +38,16 @@ public class Game1{
 	private ImageIcon[] cx={ new ImageIcon( n[ 0 ] ),new ImageIcon( n[ 1 ] ), new ImageIcon( n[ 2 ] ) };
 	private Card[] c;
 	private Clip c2,c3,c4;
+	private String s;
 	void hit2(){
 		c4.start();
 		c4.setMicrosecondPosition(0);
+	}
+	void setName(String s){
+		this.s=s;
+	}
+	void setMusic(boolean m){
+		this.m=m;
 	}
 	public Game1(){
 		f=new JFrame();
@@ -133,9 +140,8 @@ public class Game1{
 				if(win==3){
 					JOptionPane.showMessageDialog(null, "HAI VINTO!");
 					t=System.currentTimeMillis()-t;
-					System.out.println(t);
 					f.dispose();
-					new HighlightsMenu(t);
+					new HighlightsMenu(t,s);
 					c2.stop();
 				}
 			}
@@ -176,7 +182,7 @@ public class Game1{
 					t=System.currentTimeMillis()-t;
 					System.out.println(t);
 					f.dispose();
-					new HighlightsMenu(t);
+					new HighlightsMenu(t,s);
 					c2.stop();
 				}
 			}
@@ -217,7 +223,7 @@ public class Game1{
 					t=System.currentTimeMillis()-t;
 					System.out.println(t);
 					f.dispose();
-					new HighlightsMenu(t);
+					new HighlightsMenu(t,s);
 					c2.stop();
 				}
 			}
@@ -258,7 +264,7 @@ public class Game1{
 					t=System.currentTimeMillis()-t;
 					System.out.println(t);
 					f.dispose();
-					new HighlightsMenu(t);
+					new HighlightsMenu(t,s);
 					c2.stop();
 				}
 			}
@@ -299,7 +305,7 @@ public class Game1{
 					t=System.currentTimeMillis()-t;
 					System.out.println(t);
 					f.dispose();
-					new HighlightsMenu(t);
+					new HighlightsMenu(t,s);
 					c2.stop();
 				}
 			}
@@ -340,7 +346,7 @@ public class Game1{
 					t=System.currentTimeMillis()-t;
 					System.out.println(t);
 					f.dispose();
-					new HighlightsMenu(t);
+					new HighlightsMenu(t,s);
 					c2.stop();
 				}
 					
@@ -363,8 +369,12 @@ public class Game1{
 			try{
 				c2 = (Clip) AudioSystem.getLine(info);
 				c2.open(ais);
-				c2.start();
-				c2.loop(20);
+				if(m){
+					c2.start();
+					c2.loop(20);
+				}
+					
+				
 				c3 = (Clip) AudioSystem.getLine(info2);
 				c3.open(ais2);
 				c4 = (Clip) AudioSystem.getLine(info3);
@@ -455,8 +465,8 @@ public class Game1{
 			c3.start();
 			JOptionPane.showMessageDialog(null, "HAI PERSO");
 			f.dispose();
-			new StartMenu();
-			
+			StartMenu sm=new StartMenu();
+			sm.setPlayer(s);
 		}
 		e++;
 	}

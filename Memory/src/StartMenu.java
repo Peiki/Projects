@@ -9,32 +9,38 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 public class StartMenu{
 	private Clip c,c2;
+	private boolean m=true,snd=true;
 	private JLabel lblNewLabel;
 	private JFrame f;
 	private String s;
-	public String getS() {
-		return s;
-	}
 	public void setPlayer(String s){
 		this.s=s;
 		lblNewLabel.setText(lblNewLabel.getText()+s);
 	}
 	public void hit2(){
-		c2.start();
-		c2.setMicrosecondPosition(0);
+		if(snd){
+			c2.start();
+			c2.setMicrosecondPosition(0);
+		}
+	}
+	public void setMusic(boolean m){
+		this.m=m;
 	}
 	public StartMenu(){
 		f=new JFrame();
 		f.setTitle("Memory");
 		JButton b1 = new JButton("START GAME");
 		JButton btnNewButton = new JButton("EXIT GAME");
-		JLabel lblAlpha = new JLabel("Alpha 1.0.3");
+		JButton btnNewButton_1 = new JButton("OPTIONS");
+		JLabel lblAlpha = new JLabel("Alpha 1.0.4");
 		lblNewLabel = new JLabel("Player= ");
 		JLabel lblNewLabel_1 = new JLabel("");
 		ImageIcon i=new ImageIcon("img/logo.png");
@@ -46,13 +52,15 @@ public class StartMenu{
 			@Override
 			public void actionPerformed(ActionEvent e){
 				hit2();
-				new Game1();
+				Game1 g1=new Game1();
+				g1.setName(s);
+				g1.setMusic(m);
 				f.dispose();
 				c.stop();
 			}
 		});
 		
-		btnNewButton.setBounds(148, 235, 153, 49);
+		btnNewButton.setBounds(148, 291, 153, 49);
 		btnNewButton.setFont(new Font("Helvetica",Font.BOLD,20));
 		btnNewButton.addActionListener(new ActionListener(){
 			@Override
@@ -65,6 +73,15 @@ public class StartMenu{
 					f.dispose();
 				}
 					
+			}
+		});
+		
+		btnNewButton_1.setBounds(148, 235, 153, 45);
+		btnNewButton_1.setFont(new Font("Helvetica",Font.BOLD,20));
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+				hit2();
+				OptionsMenu();
 			}
 		});
 		
@@ -90,8 +107,10 @@ public class StartMenu{
 				c2 = (Clip) AudioSystem.getLine(info2);
 				c.open(ais);
 				c2.open(ais2);
-				c.start();
-				c.loop(20);
+				if(m){
+					c.start();
+					c.loop(20);
+				}
 			} catch (LineUnavailableException e){
 				e.printStackTrace();
 			}
@@ -105,6 +124,7 @@ public class StartMenu{
 		f.getContentPane().add(b1, BorderLayout.CENTER);
 		f.getContentPane().add(lblAlpha);
 		f.getContentPane().add(btnNewButton);
+		f.getContentPane().add(btnNewButton_1);
 		f.getContentPane().add(lblNewLabel);
 		f.getContentPane().add(lblNewLabel_1);
 		
@@ -125,5 +145,45 @@ public class StartMenu{
 					
 			}
 		});
+	}
+	public void OptionsMenu(){
+		JFrame f=new JFrame();
+		JCheckBox chckbxNewCheckBox = new JCheckBox(" Music");
+		JCheckBox chckbxNewCheckBox_1 = new JCheckBox(" Sound");
+		
+		f.setSize(225,200);
+		f.setVisible(true);
+		f.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		f.setResizable(false);
+		f.setLocationRelativeTo(null);
+		f.getContentPane().setLayout(null);
+		f.addWindowListener(new WindowAdapter(){
+			public void windowClosing(WindowEvent e){
+				hit2();
+				f.dispose();
+			}
+		});
+		
+		chckbxNewCheckBox.setSelected(true);
+		chckbxNewCheckBox.setHorizontalAlignment(SwingConstants.CENTER);
+		chckbxNewCheckBox.setBounds(6, 30, 207, 23);
+		chckbxNewCheckBox.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				hit2();
+				if(m)
+					c.stop();
+				else
+					c.start();
+				m=!m;
+			}
+		});
+		
+		chckbxNewCheckBox_1.setSelected(true);
+		chckbxNewCheckBox_1.setHorizontalAlignment(SwingConstants.CENTER);
+		chckbxNewCheckBox_1.setBounds(6, 56, 207, 23);
+		
+		f.getContentPane().add(chckbxNewCheckBox);
+		f.getContentPane().add(chckbxNewCheckBox_1);
+		
 	}
 }

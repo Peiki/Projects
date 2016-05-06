@@ -22,7 +22,14 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 public class HighlightsMenu{
 	private Clip c;
-	public HighlightsMenu(long t){
+	private boolean m=true;
+	void setMusic(boolean m){
+		this.m=m;
+	}
+	public boolean control(){
+		return true;
+	}
+	public HighlightsMenu(long t, String n){
 		JFrame f=new JFrame();
 		JButton btnTornaAlMenu = new JButton("Torna al Menu");
 		JLabel lbl = new JLabel("HAI STABILITO UN NUOVO RECORD!");
@@ -32,7 +39,7 @@ public class HighlightsMenu{
 			FileWriter fw=new FileWriter("Highlights.txt");
 			BufferedWriter bw=new BufferedWriter(fw);
 			//bw.write((int)t);
-			bw.write("ciao");
+			bw.write(n+" "+t);
 			bw.close();
 			fw.close();
 		} catch (IOException e) {
@@ -67,7 +74,8 @@ public class HighlightsMenu{
 		btnTornaAlMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				f.dispose();
-				new StartMenu();
+				StartMenu sm=new StartMenu();
+				sm.setPlayer(n);
 				c.stop();
 			}
 		});
@@ -84,8 +92,10 @@ public class HighlightsMenu{
 			try{
 				c = (Clip) AudioSystem.getLine(info);
 				c.open(ais);
-				c.start();
-				c.loop(20);
+				if(m){
+					c.start();
+					c.loop(20);
+				}
 			} catch (LineUnavailableException e){
 				e.printStackTrace();
 			}
@@ -108,8 +118,5 @@ public class HighlightsMenu{
 		f.getContentPane().add(textArea);
 		
 		
-	}
-	public boolean control(){
-		return true;
 	}
 }

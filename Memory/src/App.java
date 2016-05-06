@@ -12,6 +12,7 @@ public class App{
 		if(!nm.getExit()){	
 			System.out.println("Playing...");
 			sm=new StartMenu();
+			sm.setMusic(true);
 			String s=nm.getName();
 			sm.setPlayer(s);
 		}
