@@ -1,8 +1,17 @@
 import javax.swing.JFrame;
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 import java.awt.Window.Type;
@@ -13,6 +22,7 @@ public class NameMenu{
 	private JButton button_5;
 	private JButton button_6;
 	private JFrame f;
+	private Clip c;
 	public boolean getState(){
 		return state;
 	}
@@ -22,6 +32,25 @@ public class NameMenu{
 	}
 	public String getName(){
 		return btnNewButton.getText()+button_5.getText()+button_6.getText();
+	}
+	public void hit2(){
+		try{
+			File audio=new File("sound/hit2.wav");
+			AudioInputStream ais=AudioSystem.getAudioInputStream(audio);
+			AudioFormat f = ais.getFormat();
+			DataLine.Info info = new DataLine.Info(Clip.class, f);
+			try{
+				c = (Clip) AudioSystem.getLine(info);
+				c.open(ais);
+				c.start();
+			} catch (LineUnavailableException e){
+				e.printStackTrace();
+			}
+		} catch (UnsupportedAudioFileException e1){
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 	}
 	public NameMenu(){
 		f=new JFrame();
@@ -42,6 +71,7 @@ public class NameMenu{
 		button.setBounds(44, 39, 50, 23);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				hit2();
 				String s=btnNewButton.getText();
 				char c=s.charAt(0);
 				if(c=='Z')
@@ -55,6 +85,7 @@ public class NameMenu{
 		
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				hit2();
 				String s=button_5.getText();
 				char c=s.charAt(0);
 				if(c=='Z')
@@ -69,6 +100,7 @@ public class NameMenu{
 		
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				hit2();
 				String s=button_6.getText();
 				char c=s.charAt(0);
 				if(c=='Z')
@@ -83,6 +115,7 @@ public class NameMenu{
 		
 		btnV.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				hit2();
 				String s=btnNewButton.getText();
 				char c=s.charAt(0);
 				if(c=='A')
@@ -97,6 +130,7 @@ public class NameMenu{
 		
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				hit2();
 				String s=button_5.getText();
 				char c=s.charAt(0);
 				if(c=='A')
@@ -111,6 +145,7 @@ public class NameMenu{
 		
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				hit2();
 				String s=button_6.getText();
 				char c=s.charAt(0);
 				if(c=='A')
@@ -125,6 +160,7 @@ public class NameMenu{
 		
 		btnFatto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				hit2();
 				state=false;
 				f.dispose();
 			}
@@ -150,7 +186,9 @@ public class NameMenu{
 		
 		f.addWindowListener(new WindowAdapter(){
 			public void windowClosing(WindowEvent e){
+				hit2();
 				int c=JOptionPane.showConfirmDialog(null,"Sei sicuro di voler uscire?","Memory",JOptionPane.YES_NO_OPTION);
+				hit2();
 				if(c==JOptionPane.YES_OPTION){
 					exit=true;
 					state=false;

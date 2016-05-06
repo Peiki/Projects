@@ -37,7 +37,11 @@ public class Game1{
 	private ImageIcon cc;
 	private ImageIcon[] cx={ new ImageIcon( n[ 0 ] ),new ImageIcon( n[ 1 ] ), new ImageIcon( n[ 2 ] ) };
 	private Card[] c;
-	private Clip c2,c3;
+	private Clip c2,c3,c4;
+	void hit2(){
+		c4.start();
+		c4.setMicrosecondPosition(0);
+	}
 	public Game1(){
 		f=new JFrame();
 		JButton btnNewButton = new JButton("Pause");
@@ -98,6 +102,7 @@ public class Game1{
 		
 		button[0].addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				hit2();
 				if(!c[0].getStatus()){
 					if(con2==1){
 						button[z[0]].setIcon(cc);
@@ -138,6 +143,7 @@ public class Game1{
 		
 		button[1].addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				hit2();
 				if(!c[1].getStatus()){
 					if(con2==1){
 						button[z[0]].setIcon(cc);
@@ -178,6 +184,7 @@ public class Game1{
 
 		button[2].addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				hit2();
 				if(!c[2].getStatus()){
 					if(con2==1){
 						button[z[0]].setIcon(cc);
@@ -218,6 +225,7 @@ public class Game1{
 		
 		button[3].addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				hit2();
 				if(!c[3].getStatus()){
 					if(con2==1){
 						button[z[0]].setIcon(cc);
@@ -258,6 +266,7 @@ public class Game1{
 		
 		button[4].addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				hit2();
 				if(!c[4].getStatus()){
 					if(con2==1){
 						button[z[0]].setIcon(cc);
@@ -298,6 +307,7 @@ public class Game1{
 		
 		button[5].addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				hit2();
 				if(!c[5].getStatus()){
 					if(con2==1){
 						button[z[0]].setIcon(cc);
@@ -340,12 +350,16 @@ public class Game1{
 		try{
 			File audio=new File("sound/game.wav");
 			File audio2=new File("sound/lose.wav");
+			File audio3=new File("sound/flip.wav");
 			AudioInputStream ais=AudioSystem.getAudioInputStream(audio);
 			AudioInputStream ais2=AudioSystem.getAudioInputStream(audio2);
+			AudioInputStream ais3=AudioSystem.getAudioInputStream(audio3);
 			AudioFormat f = ais.getFormat();
 			AudioFormat f2= ais2.getFormat();
+			AudioFormat f3= ais3.getFormat();
 			DataLine.Info info = new DataLine.Info(Clip.class, f);
 			DataLine.Info info2 = new DataLine.Info(Clip.class, f2);
+			DataLine.Info info3 = new DataLine.Info(Clip.class, f3);
 			try{
 				c2 = (Clip) AudioSystem.getLine(info);
 				c2.open(ais);
@@ -353,6 +367,8 @@ public class Game1{
 				c2.loop(20);
 				c3 = (Clip) AudioSystem.getLine(info2);
 				c3.open(ais2);
+				c4 = (Clip) AudioSystem.getLine(info3);
+				c4.open(ais3);	
 				
 			} catch (LineUnavailableException e){
 				e.printStackTrace();
