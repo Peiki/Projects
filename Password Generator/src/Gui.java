@@ -69,10 +69,11 @@ public class Gui{
 						String s=generate();
 						if(t==false){
 							ta=new TextArea(f.getX(),f.getY());
+							ta.setText("Ciao");
 							t=true;
 						}
 						else{
-							ta.setText("Ciao");
+							ta.setText("");
 							//TODOs
 						}
 					}
