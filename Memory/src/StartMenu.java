@@ -55,6 +55,7 @@ public class StartMenu{
 				Game1 g1=new Game1();
 				g1.setName(s);
 				g1.setMusic(m);
+				System.out.print(m);
 				f.dispose();
 				c.stop();
 			}
@@ -164,7 +165,7 @@ public class StartMenu{
 			}
 		});
 		
-		chckbxNewCheckBox.setSelected(true);
+		chckbxNewCheckBox.setSelected(m);
 		chckbxNewCheckBox.setHorizontalAlignment(SwingConstants.CENTER);
 		chckbxNewCheckBox.setBounds(6, 30, 207, 23);
 		chckbxNewCheckBox.addItemListener(new ItemListener(){
@@ -178,9 +179,15 @@ public class StartMenu{
 			}
 		});
 		
-		chckbxNewCheckBox_1.setSelected(true);
+		chckbxNewCheckBox_1.setSelected(snd);
 		chckbxNewCheckBox_1.setHorizontalAlignment(SwingConstants.CENTER);
 		chckbxNewCheckBox_1.setBounds(6, 56, 207, 23);
+		chckbxNewCheckBox_1.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				hit2();
+				snd=!snd;
+			}
+		});
 		
 		f.getContentPane().add(chckbxNewCheckBox);
 		f.getContentPane().add(chckbxNewCheckBox_1);

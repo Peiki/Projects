@@ -19,7 +19,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 public class Game1{
-	private boolean pause=false,m=true;
+	private boolean pause=false,m;
 	private long t;
 	private int e=0;
 	private int[] z=new int[2];
@@ -48,6 +48,7 @@ public class Game1{
 	}
 	void setMusic(boolean m){
 		this.m=m;
+		System.out.print(m);
 	}
 	public Game1(){
 		f=new JFrame();
@@ -74,6 +75,7 @@ public class Game1{
 					PauseMenu();
 					pause=true;
 					c2.stop();
+					c2.close();
 				}
 			}
 		});
@@ -143,6 +145,7 @@ public class Game1{
 					f.dispose();
 					new HighlightsMenu(t,s);
 					c2.stop();
+					c2.close();
 				}
 			}
 		});
@@ -184,6 +187,7 @@ public class Game1{
 					f.dispose();
 					new HighlightsMenu(t,s);
 					c2.stop();
+					c2.close();
 				}
 			}
 		});
@@ -225,6 +229,7 @@ public class Game1{
 					f.dispose();
 					new HighlightsMenu(t,s);
 					c2.stop();
+					c2.close();
 				}
 			}
 		});
@@ -266,6 +271,7 @@ public class Game1{
 					f.dispose();
 					new HighlightsMenu(t,s);
 					c2.stop();
+					c2.close();
 				}
 			}
 		});
@@ -307,6 +313,7 @@ public class Game1{
 					f.dispose();
 					new HighlightsMenu(t,s);
 					c2.stop();
+					c2.close();
 				}
 			}
 		});
@@ -348,6 +355,7 @@ public class Game1{
 					f.dispose();
 					new HighlightsMenu(t,s);
 					c2.stop();
+					c2.close();
 				}
 					
 			}
@@ -373,13 +381,10 @@ public class Game1{
 					c2.start();
 					c2.loop(20);
 				}
-					
-				
 				c3 = (Clip) AudioSystem.getLine(info2);
 				c3.open(ais2);
 				c4 = (Clip) AudioSystem.getLine(info3);
-				c4.open(ais3);	
-				
+				c4.open(ais3);
 			} catch (LineUnavailableException e){
 				e.printStackTrace();
 			}
@@ -402,6 +407,7 @@ public class Game1{
 				if(c==JOptionPane.YES_OPTION){
 					f.dispose();
 					c2.stop();
+					c2.close();
 				}
 			}
 		});
@@ -462,6 +468,7 @@ public class Game1{
 		else{
 			lblNewLabel_3.setIcon(ix3);
 			c2.stop();
+			c2.close();
 			c3.start();
 			JOptionPane.showMessageDialog(null, "HAI PERSO");
 			f.dispose();

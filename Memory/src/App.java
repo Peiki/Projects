@@ -2,7 +2,7 @@ public class App{
 	public static void main(String args[]){
 		boolean t=true;
 		NameMenu nm=new NameMenu();
-		StartMenu sm;;
+		StartMenu sm;
 		while(nm.getState()){
 			if(t){
 				System.out.println("Inserting name...");

@@ -16,7 +16,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.*;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
@@ -35,26 +35,25 @@ public class HighlightsMenu{
 		JLabel lbl = new JLabel("HAI STABILITO UN NUOVO RECORD!");
 		JLabel lbl2 = new JLabel("Classifica:"); 
 		JTextArea textArea = new JTextArea();
+		PrintWriter pw=null;
 		try {
-			FileWriter fw=new FileWriter("Highlights.txt");
-			BufferedWriter bw=new BufferedWriter(fw);
-			//bw.write((int)t);
-			bw.write(n+" "+t);
-			bw.close();
-			fw.close();
+			pw = new PrintWriter(new BufferedWriter(new FileWriter("Highlights.txt", true)));
+			pw.println(n+"= "+t/1000+","+(t-(t/1000)*1000)+"s");
+			pw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 		try {
 			FileReader fr=new FileReader("Highlights.txt");
 			BufferedReader br=new BufferedReader(fr);
 			String s="";
+			int i=1;
 			while(true){
 				s=br.readLine();
 				if(s==null)
 					break;
-				textArea.setText(textArea.getText()+s);
+				textArea.setText(textArea.getText()+i+") "+s+"\n");
+				i++;
 			}
 			fr.close();
 		} catch (FileNotFoundException e1) {
@@ -77,6 +76,7 @@ public class HighlightsMenu{
 				StartMenu sm=new StartMenu();
 				sm.setPlayer(n);
 				c.stop();
+				c.close();
 			}
 		});
 		btnTornaAlMenu.setBounds(220, 388, 114, 23);
@@ -95,6 +95,7 @@ public class HighlightsMenu{
 				if(m){
 					c.start();
 					c.loop(20);
+					
 				}
 			} catch (LineUnavailableException e){
 				e.printStackTrace();
