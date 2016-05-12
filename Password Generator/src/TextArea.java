@@ -13,9 +13,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 public class TextArea{
 	private JTextArea textArea = new JTextArea();
+	boolean t=true;
 	public void setText(String s){
 		textArea.setText(s);
 		//TODOs
+	}
+	public boolean getT(){
+		return t;
 	}
 	public TextArea(int x,int y){
 		JFrame f=new JFrame();
@@ -63,10 +67,8 @@ public class TextArea{
 		f.getContentPane().setLayout(null);
 		f.addWindowListener(new WindowAdapter(){
 			public void windowClosing(WindowEvent e){
-				int c=JOptionPane.showConfirmDialog(null,"Sei sicuro di voler uscire?","Exit",JOptionPane.YES_NO_OPTION);
-				if(c==JOptionPane.YES_OPTION){
-					System.exit(0);
-				}
+					f.dispose();
+					t=false;
 			}
 		});
 		

@@ -14,6 +14,7 @@ public class Gui{
 	TextArea ta;
 	JFrame f=new JFrame();
 	boolean t=false;
+	JCheckBox chckbxNewCheckBox;
 	public Gui(){
 		JTextField tf= new JTextField("5");
 		JTextField tf_1= new JTextField("2");
@@ -23,10 +24,11 @@ public class Gui{
 		JLabel lblc = new JLabel("Lettere= ");
 		JLabel lbll = new JLabel("Cifre= ");
 		JLabel lblcs = new JLabel("Caratteri Speciali= ");
+		JLabel lblNewLabel = new JLabel("V 1.0");
 		JProgressBar progressBar = new JProgressBar();
 		JLabel lbln = new JLabel("N\u00B0 Passwords= ");
 		JLabel lblm = new JLabel("Maiuscole? ");
-		JCheckBox chckbxNewCheckBox = new JCheckBox("");
+		chckbxNewCheckBox = new JCheckBox("");
 		
 		lblc.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblc.setBounds(10, 67, 142, 14);
@@ -42,6 +44,9 @@ public class Gui{
 		
 		lblm.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblm.setBounds(195, 92, 173, 14);
+		
+		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel.setBounds(483, 11, 46, 14);
 		
 		tf.setBounds(154, 64, 31, 20);
 		tf.setColumns(10);
@@ -65,6 +70,10 @@ public class Gui{
 			public void actionPerformed(ActionEvent e) {
 				try{
 					if(Integer.parseInt(tf.getText())<0 || Integer.parseInt(tf_1.getText())<0 || Integer.parseInt(tf_2.getText())<0) throw new IllegalArgumentException();
+					else if(Integer.parseInt(tf_3.getText())>100) throw new IllegalArgumentException();
+					else if(Integer.parseInt(tf_3.getText())<=0) throw new IllegalArgumentException();
+					else if(Integer.parseInt(tf.getText())<1) throw new IllegalArgumentException();
+					else if(Integer.parseInt(tf.getText())+Integer.parseInt(tf_1.getText())+Integer.parseInt(tf_2.getText())>20) throw new IllegalArgumentException();
 					if(Integer.parseInt(tf.getText())+Integer.parseInt(tf_1.getText())+Integer.parseInt(tf_2.getText())>=8 && Integer.parseInt(tf_3.getText())>0){
 						progressBar.setValue(100);
 						int x[]=new int[4];
@@ -73,17 +82,15 @@ public class Gui{
 						x[2]=Integer.parseInt(tf_1.getText());
 						x[3]=Integer.parseInt(tf_2.getText());
 						String s=generate(x);
-						if(t==false){
+						if(t && ta.getT()==true){
+							ta.setText(s);
+						}
+						else{
 							ta=new TextArea(f.getX(),f.getY());
 							ta.setText(s);
 							t=true;
 						}
-						else{
-							ta.setText(s);
-						}
 					}
-					else if(Integer.parseInt(tf_3.getText())<=0)
-						JOptionPane.showMessageDialog(null, "Inserire almeno una password","Error",JOptionPane.ERROR_MESSAGE);
 					else
 						JOptionPane.showMessageDialog(null, "Utilizzare almeno 8 caratteri","Error",JOptionPane.ERROR_MESSAGE);
 				}
@@ -91,7 +98,16 @@ public class Gui{
 					JOptionPane.showMessageDialog(null, "Errore nell'inserimento","Error",JOptionPane.ERROR_MESSAGE);
 				}
 				catch(IllegalArgumentException e2){
-					JOptionPane.showMessageDialog(null, "Errore nell'inserimento","Error",JOptionPane.ERROR_MESSAGE);
+					if(Integer.parseInt(tf_3.getText())<=0)
+						JOptionPane.showMessageDialog(null, "Inserire almeno una password","Error",JOptionPane.ERROR_MESSAGE);
+					else if(Integer.parseInt(tf_3.getText())>100)
+						JOptionPane.showMessageDialog(null, "Max Passwords= 100","Error",JOptionPane.ERROR_MESSAGE);
+					else if(Integer.parseInt(tf.getText())<1)
+						JOptionPane.showMessageDialog(null, "Inserire almeno una lettera","Error",JOptionPane.ERROR_MESSAGE);
+					else if(Integer.parseInt(tf.getText())+Integer.parseInt(tf_1.getText())+Integer.parseInt(tf_2.getText())>20)
+						JOptionPane.showMessageDialog(null, "Max Caratteri= 20","Error",JOptionPane.ERROR_MESSAGE);
+					else
+						JOptionPane.showMessageDialog(null, "Errore nell'inserimento","Error",JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -125,6 +141,7 @@ public class Gui{
 		f.getContentPane().add(progressBar);
 		f.getContentPane().add(lblm);
 		f.getContentPane().add(chckbxNewCheckBox);
+		f.getContentPane().add(lblNewLabel);
 	}
 	public String generate(int x[]){
 		String s="";
@@ -159,7 +176,18 @@ public class Gui{
 			y[i]=x[i];
 	}
 	public char addLetter(){
-		return 'A';
+		int x=0,max,min;
+		if(chckbxNewCheckBox.isSelected())
+			x=(int)(Math.round(Math.random()));
+		if(x==0){
+			min=97;
+			max=122;
+		}
+		else{
+			min=65;
+			max=90;
+		}
+		return (char)((int)(Math.random()*(max+1-min)+min));
 	}
 	public char addDigit(){
 		return (char)((int)(Math.random()*(58-48)+48));
